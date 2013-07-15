@@ -1,23 +1,17 @@
-// AMD Wrapper
-(function(module) {
-  if(typeof define === 'function' && !!define.amd) {
-    return define(['underscore', 'backbone'], module);
-  }
+(function() {
+  var _, root, Scrap, Backbone;
 
-  if(typeof require === "function" &&
-    typeof module !== 'undefined' && !!module.exports) {
-    var _ = require('underscore'),
-        Backbone = require('backbone');
+  // Retain context
+  root = this;
 
-    return module.exports = module(Backbone);
-  }
+  // Underscore and Backbone dependencies
+  _ = root._;
+  Backbone = root.Backbone;
 
-  return window.Scrap = module(window.Backbone);
-})(function(_, Backbone) {
-  var Scrap = {};
+  // Default Scrap object
+  Scrap = root.Scrap = {};
 
   // Scrap.Base
   include "scrap.base.js"
 
-  return Scrap;
-});
+}).call(this);

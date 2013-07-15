@@ -52,6 +52,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Define our default tasks
-  grunt.registerTask('release', ['clean', 'jshint', 'includes', 'uglify']);
+  grunt.registerTask('release', ['clean', 'includes', 'jshint', 'uglify']);
   grunt.registerTask('default', ['release']);
 };
