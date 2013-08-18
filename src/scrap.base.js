@@ -18,7 +18,7 @@ _.extend(Base.prototype, Backbone.View.prototype, {
 
   createChild: function(View, options) {
     var view = new View(options);
-    this.views.push(view);
+    this._views.push(view);
     return view;
   },
 
@@ -32,7 +32,7 @@ _.extend(Base.prototype, Backbone.View.prototype, {
 
   createInterval: function(dx, callback) {
     var interval = setInterval(callback, dx);
-    this.intervals.push(interval);
+    this._intervals.push(interval);
     return interval;
   },
 
@@ -46,7 +46,7 @@ _.extend(Base.prototype, Backbone.View.prototype, {
    */
 
   bindTo: function(item, ev, callback, context) {
-    this.bindings.push({
+    this._bindings.push({
       item: item,
       ev: ev,
       callback: callback,
@@ -67,8 +67,8 @@ _.extend(Base.prototype, Backbone.View.prototype, {
   unbindAll: function() {
     var i, binding;
 
-    for(i = this.bindings.length; i > 0; i = i - 1) {
-      binding = this.bindings.pop();
+    for(i = this._bindings.length; i > 0; i = i - 1) {
+      binding = this._bindings.pop();
       binding.item.off(binding.ev, binding.callback, binding.context);
     }
 
@@ -83,8 +83,8 @@ _.extend(Base.prototype, Backbone.View.prototype, {
   clearIntervals: function() {
     var i, interval;
 
-    for(i = this.intervals.length; i > 0; i = i - 1) {
-      interval = this.intervals.pop();
+    for(i = this._intervals.length; i > 0; i = i - 1) {
+      interval = this._intervals.pop();
       clearInterval(interval);
     }
   },
@@ -97,8 +97,8 @@ _.extend(Base.prototype, Backbone.View.prototype, {
   removeChildren: function() {
     var i, view;
 
-    for(i = this.views.length; i > 0; i = i - 1) {
-      view = this.views.pop();
+    for(i = this._views.length; i > 0; i = i - 1) {
+      view = this._views.pop();
       view.dispose();
     }
   },
