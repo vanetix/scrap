@@ -90,6 +90,16 @@ _.extend(Base.prototype, Backbone.View.prototype, {
   },
 
   /**
+   * Return child status for this view
+   *
+   * @return {Boolean}
+   */
+
+  hasChildren: function() {
+    return !!this._views.length;
+  },
+
+  /**
    * Clean up all children views
    * disposes of all child views of `this`
    */
