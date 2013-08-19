@@ -1,6 +1,6 @@
 {
   "name": "scrap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "vanetix <matmcfarland@gmail.com>",
   "description": "Simple view manager for Backbone.js",
   "repository": {

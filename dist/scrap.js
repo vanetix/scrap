@@ -1,8 +1,8 @@
 /**
  * scrap
- * v0.0.1
+ * v0.0.2
  *
- * 07/15/13
+ * 08/19/13
  */
 
 (function() {
@@ -39,7 +39,7 @@
 
     createChild: function(View, options) {
       var view = new View(options);
-      this.views.push(view);
+      this._views.push(view);
       return view;
     },
 
@@ -53,7 +53,7 @@
 
     createInterval: function(dx, callback) {
       var interval = setInterval(callback, dx);
-      this.intervals.push(interval);
+      this._intervals.push(interval);
       return interval;
     },
 
@@ -67,7 +67,7 @@
      */
 
     bindTo: function(item, ev, callback, context) {
-      this.bindings.push({
+      this._bindings.push({
         item: item,
         ev: ev,
         callback: callback,
@@ -88,8 +88,8 @@
     unbindAll: function() {
       var i, binding;
 
-      for(i = this.bindings.length; i > 0; i = i - 1) {
-        binding = this.bindings.pop();
+      for(i = this._bindings.length; i > 0; i = i - 1) {
+        binding = this._bindings.pop();
         binding.item.off(binding.ev, binding.callback, binding.context);
       }
 
@@ -104,10 +104,20 @@
     clearIntervals: function() {
       var i, interval;
 
-      for(i = this.intervals.length; i > 0; i = i - 1) {
-        interval = this.intervals.pop();
+      for(i = this._intervals.length; i > 0; i = i - 1) {
+        interval = this._intervals.pop();
         clearInterval(interval);
       }
+    },
+
+    /**
+     * Return child status for this view
+     *
+     * @return {Boolean}
+     */
+
+    hasChildren: function() {
+      return !!this._views.length;
     },
 
     /**
@@ -118,8 +128,8 @@
     removeChildren: function() {
       var i, view;
 
-      for(i = this.views.length; i > 0; i = i - 1) {
-        view = this.views.pop();
+      for(i = this._views.length; i > 0; i = i - 1) {
+        view = this._views.pop();
         view.dispose();
       }
     },
